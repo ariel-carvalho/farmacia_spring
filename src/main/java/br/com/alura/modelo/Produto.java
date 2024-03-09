@@ -1,6 +1,6 @@
 package br.com.alura.modelo;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "produtos")
@@ -12,7 +12,8 @@ public class Produto
     private String nome;
     private String descricao;
     private double preco;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @Transient
     private Fabricante fabricante;
 
     public Produto(String nome, String descricao, double preco, Fabricante fabricante)
@@ -23,39 +24,48 @@ public class Produto
         this.fabricante = fabricante;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public String getDescricao() {
+    public String getDescricao()
+    {
         return descricao;
     }
 
-    public double getPreco() {
+    public double getPreco()
+    {
         return preco;
     }
 
-    public Fabricante getFabricante() {
+    public Fabricante getFabricante()
+    {
         return fabricante;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 
-    public void setDescricao(String descricao) {
+    public void setDescricao(String descricao)
+    {
         this.descricao = descricao;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(double preco)
+    {
         this.preco = preco;
     }
 
-    public void setFabricante(Fabricante fabricante) {
+    public void setFabricante(Fabricante fabricante)
+    {
         this.fabricante = fabricante;
     }
 }

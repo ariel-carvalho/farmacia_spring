@@ -1,6 +1,6 @@
 package br.com.alura.modelo;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "fabricantes")
@@ -11,19 +11,23 @@ public class Fabricante
     private int id;
     private String nome;
 
-    public Fabricante(String nome) {
+    public Fabricante(String nome)
+    {
         this.nome = nome;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(String nome)
+    {
         this.nome = nome;
     }
 }
