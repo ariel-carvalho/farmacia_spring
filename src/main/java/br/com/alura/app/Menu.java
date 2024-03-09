@@ -71,6 +71,19 @@ public class Menu
     }
 
     Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+
+    public void salvarFabricante()
+    {
+        System.out.println("Digite o nome do fabricante:");
+        String nome = scanner.next();
+
+        Fabricante fabricante = new Fabricante(nome);
+
+        fabricanteRepository.save(fabricante);
+
+        System.out.println("Fabricante cadastrado com sucesso!");
+    }
+
     public void salvarProduto()
     {
         System.out.println("Digite o nome do produto:");
@@ -85,24 +98,16 @@ public class Menu
         System.out.println("Digite o nome do fabricante:");
         String nomeFabricante = scanner.next();
 
-        Produto produto = new Produto(nome, descricao, preco, new Fabricante(nomeFabricante));
+        Fabricante fabricante = fabricanteRepository.findByNome(nomeFabricante);
+        var fabricanteRecuperado = fabricante;
+
+        Produto produto = new Produto(nome, descricao, preco, fabricanteRecuperado);
 
         produtoRepository.save(produto);
 
         System.out.println("Produto cadastrado com sucesso!");
     }
 
-    public void salvarFabricante()
-    {
-        System.out.println("Digite o nome do fabricante:");
-        String nome = scanner.next();
-
-        Fabricante fabricante = new Fabricante(nome);
-
-        fabricanteRepository.save(fabricante);
-
-        System.out.println("Fabricante cadastrado com sucesso!");
-    }
     public void listar()
     {
         List<Produto> produtos = new ArrayList<>();
