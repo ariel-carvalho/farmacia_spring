@@ -13,7 +13,6 @@ public class Produto
     private String descricao;
     private double preco;
     @ManyToOne
-    @Transient
     private Fabricante fabricante;
 
     public Produto(String nome, String descricao, double preco, Fabricante fabricante)
@@ -23,6 +22,8 @@ public class Produto
         this.preco = preco;
         this.fabricante = fabricante;
     }
+
+    public Produto(){}
 
     public int getId()
     {
@@ -68,6 +69,10 @@ public class Produto
     {
         this.fabricante = fabricante;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Nome: " + nome + ", Descricao: " + descricao + ", Preco: " + preco + ", Fabricante: " + fabricante;
+    }
 }
-
-

@@ -16,6 +16,8 @@ public class Fabricante
         this.nome = nome;
     }
 
+    public Fabricante(){}
+
     public int getId()
     {
         return id;

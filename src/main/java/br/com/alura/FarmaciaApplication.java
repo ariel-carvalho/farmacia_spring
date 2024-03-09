@@ -1,6 +1,7 @@
 package br.com.alura;
 
-import br.com.alura.app.Crud;
+import br.com.alura.app.Menu;
+import br.com.alura.repository.FabricanteRepository;
 import br.com.alura.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,12 +12,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FarmaciaApplication implements CommandLineRunner
 {
     @Autowired
-    private ProdutoRepository repository;
+    private ProdutoRepository produtoRepository;
+    @Autowired
+    private FabricanteRepository fabricanteRepository;
 
-    public FarmaciaApplication(ProdutoRepository repository)
+    public FarmaciaApplication(ProdutoRepository produtoRepository, FabricanteRepository fabricanteRepository)
     {
-        this.repository = repository;
+        this.produtoRepository = produtoRepository;
+        this.fabricanteRepository = fabricanteRepository;
     }
+
     public static void main(String[] args)
     {
         SpringApplication.run(FarmaciaApplication.class, args);
@@ -24,7 +29,7 @@ public class FarmaciaApplication implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        Crud crud = new Crud(repository);
-        crud.exibirMenu();
+        Menu menu = new Menu(produtoRepository, fabricanteRepository);
+        menu.exibirMenu();
     }
 }
