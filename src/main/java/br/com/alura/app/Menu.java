@@ -26,15 +26,16 @@ public class Menu
 
         var opcao = 0;
 
-        while (opcao != 6) {
+        while (opcao != 7) {
             var menu = ("""
                     FARMACIA - ESCOLHA UMA OPÇÃO:
                     1 - Cadastrar Fabricante
                     2 - Cadastrar Produto
                     3 - Listar Produtos
-                    4 - Editar descrição do produto
-                    5 - Apagar produto
-                    6 - Sair
+                    4 - Listar por ID
+                    5 - Editar Descrição do Produto
+                    6 - Apagar Produto
+                    7 - Sair
                     """);
 
             System.out.println(menu);
@@ -52,15 +53,17 @@ public class Menu
                     listar();
                     break;
                 case 4:
-                    editar();
-                    break;
-                case 5:
                     listarPorId();
                     break;
+                case 5:
+                    editar();
+                    break;
                 case 6:
+                    deletar();
+                    break;
+                case 7:
                     System.out.println("Finalizando a aplicação.");
                     break;
-
                 default:
                     System.out.println("Opção inválida");
             }
@@ -130,6 +133,14 @@ public class Menu
         produtoRepository.save(produto);
 
         System.out.println("Descrição atualizada!");
+    }
+
+    public void deletar()
+    {
+        System.out.println("Digite o ID do produto:");
+        int id = scanner.nextInt();
+        produtoRepository.deleteById(Integer.valueOf(id));
+        System.out.println("Produto deletado!");
     }
 }
 
