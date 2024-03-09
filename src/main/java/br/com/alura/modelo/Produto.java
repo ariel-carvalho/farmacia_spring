@@ -1,11 +1,18 @@
 package br.com.alura.modelo;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "produtos")
 public class Produto
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String descricao;
     private double preco;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Fabricante fabricante;
 
     public Produto(String nome, String descricao, double preco, Fabricante fabricante)
@@ -51,7 +58,6 @@ public class Produto
     public void setFabricante(Fabricante fabricante) {
         this.fabricante = fabricante;
     }
-
 }
 
 
