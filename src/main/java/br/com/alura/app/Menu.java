@@ -32,7 +32,7 @@ public class Menu
                     1 - Cadastrar Fabricante
                     2 - Cadastrar Produto
                     3 - Listar Produtos
-                    4 - Editar produto
+                    4 - Editar descrição do produto
                     5 - Apagar produto
                     6 - Sair
                     """);
@@ -55,7 +55,7 @@ public class Menu
                     editar();
                     break;
                 case 5:
-
+                    listarPorId();
                     break;
                 case 6:
                     System.out.println("Finalizando a aplicação.");
@@ -107,15 +107,29 @@ public class Menu
         produtos.forEach(System.out::println);
     }
 
+    public int listarPorId()
+    {
+        System.out.println("Digite o ID do produto:");
+        int id = scanner.nextInt();
+        Produto produto = produtoRepository.findById(id);
+        System.out.println(produto);
+        return produto.getId();
+    }
+
     public void editar()
     {
         System.out.println("Digite o ID do produto:");
         int id = scanner.nextInt();
+        var produto = produtoRepository.findById(id);
 
+        System.out.println("Digite a nova descrição:");
+        String descricao = scanner.next();
 
+        produto.setDescricao(descricao);
 
-        produtoRepository.findAll();
+        produtoRepository.save(produto);
+
+        System.out.println("Descrição atualizada!");
     }
-
 }
 

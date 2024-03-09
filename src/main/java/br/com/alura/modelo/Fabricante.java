@@ -2,6 +2,8 @@ package br.com.alura.modelo;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "fabricantes")
 public class Fabricante
@@ -10,6 +12,13 @@ public class Fabricante
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
+    @OneToMany(mappedBy = "fabricante")
+    private List<Produto> produto;
+
+    public List<Produto> getProdutos()
+    {
+        return produto;
+    }
 
     public Fabricante(String nome)
     {
